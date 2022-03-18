@@ -18,6 +18,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private Transform firePosition;
 
+    public int _lifes = 3;
+    public int _coins;
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -70,6 +73,11 @@ public class PlayerControl : MonoBehaviour
             _playerInput._attackInput = false;
             Attack();
         }
+    }
+
+    public void AddCoins(int coins)
+    {
+        _coins += coins;
     }
 
     // Primeiramente quando acontece o trigger OnTriggerEnter2D no enimigo ele vai ver se
