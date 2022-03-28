@@ -31,7 +31,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         if (_damagable != null)
         {
-            _damagable.DeathEvent += OnDeath;
+            _damagable.OnDeathEvent += OnDeath;
         }
     }
 
@@ -39,7 +39,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         if (_damagable != null)
         {
-            _damagable.DeathEvent -= OnDeath;
+            _damagable.OnDeathEvent -= OnDeath;
         }
     }
 

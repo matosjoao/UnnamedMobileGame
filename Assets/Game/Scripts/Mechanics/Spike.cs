@@ -7,7 +7,7 @@ public class Spike : MonoBehaviour
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(1);
+            damageable.TakeDamage();
         }
     }
 }

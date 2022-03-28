@@ -92,7 +92,7 @@ public class Snowball : MonoBehaviour
             if (_poll != null)
                 _poll.Release(this);
 
-            damageable.TakeDamage(10);
+            damageable.TakeDamage();
         }
         else if (this.isActiveAndEnabled)
         {

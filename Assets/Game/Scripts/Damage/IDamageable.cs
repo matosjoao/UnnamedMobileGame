@@ -2,9 +2,10 @@ using System;
 
 public interface IDamageable
 {
-    void TakeDamage(int damage);
+    void TakeDamage(bool dead = false);
 
-    event Action DeathEvent;
+    event Action OnDamageEvent;
 
-    bool IsDead { get; }
+    event Action OnDeathEvent;
+
 }

@@ -8,8 +8,10 @@ public static class TrampolineAnimationKeys
 public class Trampoline : MonoBehaviour
 {
     private Animator _animator;
+    private AudioSource _audioSource;
 
     [SerializeField] private Vector2 jumpVelocity;
+    [SerializeField] private AudioClip trampolineSound;
 
     private bool _onTop;
     private CharacterMovement _characterMovement;
@@ -17,6 +19,7 @@ public class Trampoline : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,5 +50,6 @@ public class Trampoline : MonoBehaviour
     {
         if (!_onTop) return;
         _characterMovement.CurrentVelocity = jumpVelocity;
+        _audioSource.PlayOneShot(trampolineSound);
     }
 }

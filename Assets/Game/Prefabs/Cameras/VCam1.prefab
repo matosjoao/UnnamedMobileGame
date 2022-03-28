@@ -61,7 +61,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9972222, y: 1}
+    m_SensorSize: {x: 1.9975125, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -135,16 +135,16 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.75
+  m_ScreenY: 0.7
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.06
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.25
-  m_SoftZoneHeight: 0.6
+  m_SoftZoneHeight: 0.34
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.14999999
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0

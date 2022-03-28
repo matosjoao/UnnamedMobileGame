@@ -31,14 +31,14 @@ public class EnemyAIController : MonoBehaviour
 
     private void OnEnable()
     {
-        _damagable.DeathEvent += OnDeath;
+        _damagable.OnDamageEvent += OnDeath;
     }
 
     private void OnDisable()
     {
         if (_damagable != null)
         {
-            _damagable.DeathEvent -= OnDeath;
+            _damagable.OnDamageEvent -= OnDeath;
         }
     }
 

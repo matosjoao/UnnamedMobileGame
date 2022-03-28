@@ -1,17 +1,16 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathOnDamage : MonoBehaviour, IDamageable
 {
-    public bool IsDead { get; private set; }
+    private PlayerControl _playerControl;
 
-    public event Action DeathEvent;
+    public event Action OnDamageEvent;
+    public event Action OnDeathEvent;
 
     private void Awake()
     {
-        IsDead = false;
+        _playerControl = GetComponent<PlayerControl>();
     }
 
     // Queremos que várias personagens tenham vida e que sofram damage
@@ -20,9 +19,16 @@ public class DeathOnDamage : MonoBehaviour, IDamageable
     // Isto porque podemos querer fazer diferentes coisas ao sofrer dano, dependentemente de quem seja
     // Tocar um som diferente, se for o player diminuir vidas, se for um enimigo morrer logo...
     // Assim no componente principla do jogador subscrevemos para ouvir este evento "DamageEvent"
-    public void TakeDamage(int damage)
+    public void TakeDamage(bool dead = false)
     {
-        IsDead = true;
-        DeathEvent.Invoke();
+        // Is dead?
+        if ((_playerControl != null && _playerControl.Lifes <= 1) || dead)
+        {
+            OnDeathEvent.Invoke();
+        }
+        else if(_playerControl != null)
+        {
+            OnDamageEvent.Invoke();
+        }
     }
 }

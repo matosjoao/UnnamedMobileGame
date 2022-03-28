@@ -39,10 +39,6 @@ public class CharacterMovement : MonoBehaviour
     private float Gravity { get { return maxJumpHeight * 2 / (jumpPeakTime * jumpPeakTime); } }
     public float JumpSpeed { get { return Gravity * jumpPeakTime; } }
 
-    // TODO: DELETE
-    public Vector2 DebugCurrentVelocity;
-    public Vector2 DebugCurrentPosition;
-
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -81,7 +77,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (CanJump())
         {
-            currentVelocity.y = JumpSpeed;
+             currentVelocity.y = JumpSpeed;
         }
     }
 
@@ -106,9 +102,6 @@ public class CharacterMovement : MonoBehaviour
         Vector2 currentPosition = previousPosition + currentVelocity * Time.fixedDeltaTime;
 
         _rigidbody2D.MovePosition(currentPosition);
-
-        DebugCurrentPosition = _rigidbody2D.position;
-        DebugCurrentVelocity = currentVelocity;
     }
 
     public void StopImmediately()

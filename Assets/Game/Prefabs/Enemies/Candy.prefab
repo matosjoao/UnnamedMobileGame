@@ -168,7 +168,10 @@ MonoBehaviour:
   groundedLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  groundedRaycastDistance: 0.1
+  groundedCheckRadius: 0.3
+  groundedCheck: {fileID: 0}
+  DebugCurrentVelocity: {x: 0, y: 0}
+  DebugCurrentPosition: {x: 0, y: 0}
 --- !u!114 &5822778337663701918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46b140a0f57a045a477f703aee37a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lifes: 3
 --- !u!1 &5822778338311120858
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,4 +282,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b89b1afc1dd564c8ea6f0dc9d317bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
