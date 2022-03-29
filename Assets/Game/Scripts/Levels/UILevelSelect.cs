@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UILevelSelect : MonoBehaviour
 {
-    [SerializeField] private LevelController levelController;
+    [SerializeField] private GameController gameController;
     [SerializeField] private UILevel levelUI;
     [SerializeField] private LevelPopup levelPopup;
     [SerializeField] private GameObject leftArrow;
@@ -27,7 +27,7 @@ public class UILevelSelect : MonoBehaviour
         _visibleLevelList = new List<UILevel>();
 
         // Criamos os elementos UI para cada level que tivermos
-        for (int i = 0; i < levelController.Levels.Count; i++)
+        for (int i = 0; i < gameController.Levels.Count; i++)
         {
             _levelList.Add(levelUI);
         }
@@ -91,7 +91,7 @@ public class UILevelSelect : MonoBehaviour
                 uiLevelInstance.gameObject.SetActive(true);
 
                 // Obter o Level Data
-                Level level = levelController.Levels[(startPos + i)];
+                Level level = gameController.Levels[(startPos + i)];
 
                 // Colocar as stars
                 uiLevelInstance.SetStars(level.Stars);
@@ -122,7 +122,7 @@ public class UILevelSelect : MonoBehaviour
         for (int i = 0; i < pageList.Count; i++)
         {
             // Obter o Level Data
-            Level level = levelController.Levels[(startPos + i)];
+            Level level = gameController.Levels[(startPos + i)];
 
             // TODO:: Colocar em pool
             // Instanciar o UILevel
@@ -185,7 +185,7 @@ public class UILevelSelect : MonoBehaviour
         else
         {
             // Ir para o próximo nível
-            levelController.StartLevel(level.LevelName);
+            gameController.StartLevel(level.LevelName);
         }
     }
 }
