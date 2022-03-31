@@ -25,9 +25,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Vector2 hurtVelocity;
 
     private int _coins;
-    private int _lifes = 3;
-    public int Coins { get { return _coins;  } }
-    public int Lifes { get { return _lifes; } }
+    private int _lifes;
+    public int Coins { get { return _coins; } }
+    public int Lifes { get { return _lifes; } set { _lifes = value; } }
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         HudManager.Instance.SetCoins(_coins.ToString());
-        HudManager.Instance.SetLifes("3");
+        HudManager.Instance.SetLifes(_lifes.ToString());
     }
 
     private void OnEnable()
