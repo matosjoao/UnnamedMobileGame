@@ -8,24 +8,24 @@ public class UILevel : MonoBehaviour
     [SerializeField] private GameObject lockImage;
     [SerializeField] private Transform starParent;
 
-    private Image[] stars;
+    private Image[] _stars;
 
     private void Awake()
     {
-        stars = starParent.GetComponentsInChildren<Image>();
+        _stars = starParent.GetComponentsInChildren<Image>();
     }
 
     public void SetStars(int score)
     {
-        for (int i = 0; i < stars.Length; i++)
+        for (int i = 0; i < _stars.Length; i++)
         {
             if (i < score)
             {
-                stars[i].color = Color.white;
+                _stars[i].color = Color.white;
             }
             else
             {
-                stars[i].color = new Color32(91, 91, 91, 123);
+                _stars[i].color = new Color32(91, 91, 91, 123);
             }
         }
     }

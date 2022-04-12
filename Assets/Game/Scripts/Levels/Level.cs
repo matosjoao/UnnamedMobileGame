@@ -1,12 +1,13 @@
-using UnityEngine;
+using System;
 
+[Serializable]
 public class Level
 {
-    public int ID { get; set; }
-    public string LevelName { get; set; }
-    public bool Completed { get; set; }
-    public int Stars { get; set; }
-    public bool Locked { get; set; }
+    public int ID;
+    public string LevelName;
+    public bool Completed;
+    public int Stars;
+    public bool Locked;
 
     public Level(int id, string levelName, bool completed, int stars, bool locked)
     {

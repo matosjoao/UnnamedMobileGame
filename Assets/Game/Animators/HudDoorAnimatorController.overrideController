@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HudDoorAnimatorController
+  m_Controller: {fileID: 9100000, guid: eae62faadca35f1409b78ff48b509bd8, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8dbb59cc049a74d488f8ae553970a507, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f25c2a9952f71974ebb46079f4ec9238, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 108bb1c43a8e61c4882091790c099abe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ba0a8f1ffd856504db8451a63b43b10c, type: 2}

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BackgroundParallax : MonoBehaviour
 {
-    [SerializeField] private GameObject camera;
+    [SerializeField] private GameObject cam;
     [SerializeField] private float parallaxEffect;
 
     private float _lenght, _startpos;
@@ -15,8 +15,8 @@ public class BackgroundParallax : MonoBehaviour
 
     private void Update()
     {
-        float temp = (camera.transform.position.x * (1 - parallaxEffect));
-        float distance = camera.transform.position.x * parallaxEffect;
+        float temp = (cam.transform.position.x * (1 - parallaxEffect));
+        float distance = cam.transform.position.x * parallaxEffect;
 
         transform.position = new Vector3(_startpos + distance, transform.position.y, transform.position.z);
 

@@ -21,7 +21,5 @@ public class ChainPush : MonoBehaviour
 
             _characterMovement.CurrentVelocity = moveDirection * pushVelocity;
         }
-        
-        //if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
     }
 }

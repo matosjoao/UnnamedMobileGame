@@ -4,6 +4,7 @@ public class MovingPlatform : MonoBehaviour
 {
     [SerializeField] private int speed;
     [SerializeField] private Vector3[] positions;
+    [SerializeField] private bool IsAutomatic = false;
 
     private Transform _transform;
     private int _index;
@@ -22,7 +23,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void Update()
     {
-        if (!IsMoving) return;
+        if (!IsMoving && !IsAutomatic) return;
 
         if (_transform.position == positions[_index])
         {
@@ -39,7 +40,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsMoving) return;
+        if (!IsMoving && !IsAutomatic) return;
 
         _transform.position = Vector2.MoveTowards(_transform.position, positions[_index], speed * Time.deltaTime);
     }

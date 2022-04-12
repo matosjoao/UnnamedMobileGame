@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(AudioSource))]
@@ -14,12 +13,10 @@ public class Gift : MonoBehaviour
 
     [SerializeField] private AudioClip pickSound;
     [SerializeField] private Sprite[] images;
-    [SerializeField] private ConfettiEffect _confettiEffect; //TODO:: Remover daqui o efeito
 
     private int _random;
     private int _amount;
     private int _randomAnim;
-    private ObjectPool<ConfettiEffect> _poolConfettiEffect; //TODO:: Remover daqui a pool
 
     private void Awake()
     {
@@ -27,9 +24,6 @@ public class Gift : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();
-
-        //TODO:: Remover daqui a pool
-        _poolConfettiEffect = new ObjectPool<ConfettiEffect>(CreateConfettiEffect, OnTakeConfettiEffectFromPoll, OnReturnConfettiEffectToPoll);
     }
 
     private void Start()
@@ -50,14 +44,14 @@ public class Gift : MonoBehaviour
             if(playerControl != null)
             {
                 // Adicionar score
-                playerControl.AddCoins(_amount);
+                playerControl.AddScore(_amount);
                 // Reproduzir som
                 _audioSource.PlayOneShot(pickSound);
                 // Adicionar efeito especial
                 if(_randomAnim > 0)
                 {
                     //TODO:: Ir buscar a pool do GameController
-                    var snowEffect = _poolConfettiEffect.Get();
+                    var snowEffect = playerControl.GetConfetti();
                     snowEffect.transform.position = transform.position;
                     snowEffect.transform.rotation = transform.rotation;
                     snowEffect.LifeTime = 1.0f;
@@ -70,26 +64,6 @@ public class Gift : MonoBehaviour
             }
         }
     }
-
-    //TODO:: Remover daqui a pool
-    #region ConfettiEffect Pool
-    private ConfettiEffect CreateConfettiEffect()
-    {
-        var confettiEffect = Instantiate(_confettiEffect);
-        confettiEffect.SetPool(_poolConfettiEffect);
-        return confettiEffect;
-    }
-
-    private void OnTakeConfettiEffectFromPoll(ConfettiEffect confettiEffect)
-    {
-        confettiEffect.gameObject.SetActive(true);
-    }
-
-    private void OnReturnConfettiEffectToPoll(ConfettiEffect confettiEffect)
-    {
-        confettiEffect.gameObject.SetActive(false);
-    }
-    #endregion
 }
 
 public static class GiftAnimationKeys

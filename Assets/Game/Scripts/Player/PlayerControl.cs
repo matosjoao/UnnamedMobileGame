@@ -1,5 +1,7 @@
-using UnityEngine.Pool;
+using System;
 using UnityEngine;
+using UnityEngine.Pool;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(CharacterFacing))]
@@ -12,10 +14,17 @@ public class PlayerControl : MonoBehaviour
     private CharacterMovement _characterMovement;
     private AudioSource _audioSource;
     private IDamageable _damagable;
-    private ObjectPool<Snowball> _poolSnowball;
+    private GameController _gameController;
 
+    private ObjectPool<Snowball> _poolSnowball;
+    private ObjectPool<ConfettiEffect> _poolConfettiEffect;
+
+    [Header("Player Attack")]
     [SerializeField] private Snowball fireBall;
     [SerializeField] private Transform firePosition;
+
+    [Header("Player Collect")]
+    [SerializeField] private ConfettiEffect confettiEffectParticle;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip hurtSound;
@@ -24,9 +33,9 @@ public class PlayerControl : MonoBehaviour
     [Header("Velocities")]
     [SerializeField] private Vector2 hurtVelocity;
 
-    private int _coins;
+    private int _levelScore;
     private int _lifes;
-    public int Coins { get { return _coins; } }
+    public int Score { get { return _levelScore; } }
     public int Lifes { get { return _lifes; } set { _lifes = value; } }
 
     private void Awake()
@@ -36,13 +45,21 @@ public class PlayerControl : MonoBehaviour
         _characterMovement = GetComponent<CharacterMovement>();
         _audioSource = GetComponent<AudioSource>();
         _damagable = GetComponent<IDamageable>();
+        _gameController = FindObjectOfType<GameController>();
+
+        // Inicializar pools
         _poolSnowball = new ObjectPool<Snowball>(CreateSnowBall, OnTakeSnowBallFromPoll, OnReturnSnowBallToPoll);
+        _poolConfettiEffect = new ObjectPool<ConfettiEffect>(CreateConfettiEffect, OnTakeConfettiEffectFromPoll, OnReturnConfettiEffectToPoll);
     }
 
     private void Start()
     {
-        HudManager.Instance.SetCoins(_coins.ToString());
-        HudManager.Instance.SetLifes(_lifes.ToString());
+        HudManager.Instance.SetScore(_levelScore.ToString());
+        if(_gameController != null)
+        {
+            HudManager.Instance.SetLifes(_gameController.Lifes.ToString());
+            _lifes = _gameController.Lifes;
+        }
     }
 
     private void OnEnable()
@@ -97,13 +114,13 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Adicionar valor de objeto coletado
-    public void AddCoins(int coins)
+    public void AddScore(int score)
     {
         // Ataulizar valor;
-        _coins += coins;
+        _levelScore += score;
 
         // Atualizar UI
-        HudManager.Instance.SetCoins(_coins.ToString());
+        HudManager.Instance.SetScore(_levelScore.ToString());
     }
 
     // Primeiramente quando acontece o trigger OnTriggerEnter2D no enimigo ele vai ver se
@@ -129,6 +146,27 @@ public class PlayerControl : MonoBehaviour
         // Atualizar UI
         HudManager.Instance.SetLifes(_lifes.ToString());
     }
+
+    public void OnFinishLevel()
+    {
+        // Parar o Player
+        _characterMovement.StopImmediately();
+
+        // Completar nível no GameController
+        // Adicionar points aos points atuais e vidas no GameController
+        Scene scene = SceneManager.GetActiveScene();
+        _gameController.OnCompleteLevel(_lifes, _levelScore, scene.name);
+    }
+
+    public ConfettiEffect GetConfetti()
+    {
+        return _poolConfettiEffect.Get();
+    }
+
+
+
+
+
 
     private void Attack()
     {
@@ -157,6 +195,25 @@ public class PlayerControl : MonoBehaviour
     private void OnReturnSnowBallToPoll(Snowball snowBall)
     {
         snowBall.gameObject.SetActive(false);
+    }
+    #endregion
+
+    #region ConfettiEffect Pool
+    private ConfettiEffect CreateConfettiEffect()
+    {
+        var confettiEffect = Instantiate(confettiEffectParticle);
+        confettiEffect.SetPool(_poolConfettiEffect);
+        return confettiEffect;
+    }
+
+    private void OnTakeConfettiEffectFromPoll(ConfettiEffect confettiEffect)
+    {
+        confettiEffect.gameObject.SetActive(true);
+    }
+
+    private void OnReturnConfettiEffectToPoll(ConfettiEffect confettiEffect)
+    {
+        confettiEffect.gameObject.SetActive(false);
     }
     #endregion
 }

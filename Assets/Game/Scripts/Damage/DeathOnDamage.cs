@@ -6,6 +6,7 @@ public class DeathOnDamage : MonoBehaviour, IDamageable
     private PlayerControl _playerControl;
 
     public event Action OnDamageEvent;
+
     public event Action OnDeathEvent;
 
     private void Awake()
