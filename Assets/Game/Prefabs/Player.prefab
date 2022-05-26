@@ -368,6 +368,7 @@ MonoBehaviour:
   fireBall: {fileID: 5329196628602063038, guid: a6b48fe0d1bb5374b8b853a7095877ba, type: 3}
   firePosition: {fileID: 4905164744277666510}
   confettiEffectParticle: {fileID: 6241681728676257793, guid: af8b997b2b817e14ab7156a30d88a7de, type: 3}
+  scorePopupText: {fileID: 5335103114404403543, guid: f859d2b7365243142a310109c72ecbbb, type: 3}
   hurtSound: {fileID: 8300000, guid: c56822e1c66941b4391a524e12053113, type: 3}
   jumpSound: {fileID: 8300000, guid: aecc78ca63b519d48b0fe4499f256e70, type: 3}
   hurtVelocity: {x: 30, y: 30}
@@ -454,6 +455,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7037967833249416528}
     m_Modifications:
+    - target: {fileID: 8332795017894267649, guid: a8c989b5a67023a49bc44773d26c0084, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8332795017894267678, guid: a8c989b5a67023a49bc44773d26c0084, type: 3}
       propertyPath: m_RootOrder
       value: 3

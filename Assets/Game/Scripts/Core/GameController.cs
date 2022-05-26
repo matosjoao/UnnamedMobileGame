@@ -67,6 +67,19 @@ public class GameController : MonoBehaviour
         return currentLevel != null ? currentLevel : Levels.First();
     }
 
+    public void OnFailedLevel(int lifes, int score, string levelName)
+    {
+        // Atualizar Status
+        _playerData.Lifes = lifes < 3 ? 3 : lifes;
+        _playerData.Score += score;
+
+        // Save Progress
+        Save();
+
+        // Load Menu
+        LoadMenu(score);
+    }
+
     public void OnCompleteLevel(int lifes, int score, string levelName)
     {
         // Atualizar Status
@@ -116,8 +129,6 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(transactionTime);
         // Carregar novo nível
         SceneManager.LoadScene("Menu");
-
-        Debug.Log("1");
     }
 
     IEnumerator LoadGameLevel(string levelName)
@@ -128,8 +139,6 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(transactionTime);
         // Carregar novo nível
         SceneManager.LoadScene(levelName);
-
-        Debug.Log("1");
     }
    
 
@@ -145,6 +154,7 @@ public class GameController : MonoBehaviour
     {
         List<PlayerData> data = JsonSaving.LoadData<PlayerData>(saveFileName);
         _playerData = data.Count > 0 ? data[0] : null;
+        //TODO: Uncomment
         if (_playerData == null)
         {
             List<Level> levels = new List<Level>
@@ -152,6 +162,9 @@ public class GameController : MonoBehaviour
                 new Level(1, "Level1", false, 0, false),
                 new Level(2, "Level2", false, 0, true),
                 new Level(3, "Level3", false, 0, true),
+                new Level(4, "Level4", false, 0, true),
+                new Level(5, "Level5", false, 0, true),
+                new Level(6, "Level6", false, 0, true)
             };
 
             _playerData = new PlayerData(3, 0, 1, levels);

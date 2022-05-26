@@ -51,11 +51,17 @@ public class Gift : MonoBehaviour
                 if(_randomAnim > 0)
                 {
                     //TODO:: Ir buscar a pool do GameController
-                    var snowEffect = playerControl.GetConfetti();
-                    snowEffect.transform.position = transform.position;
-                    snowEffect.transform.rotation = transform.rotation;
-                    snowEffect.LifeTime = 1.0f;
+                    var confettiEffect = playerControl.GetConfetti();
+                    confettiEffect.transform.position = transform.position;
+                    confettiEffect.transform.rotation = transform.rotation;
+                    confettiEffect.LifeTime = 1.0f;
                 }
+                //TODO:: Ir buscar a pool do GameController
+                var scoreEffect = playerControl.GetScorePopup();
+                scoreEffect.transform.position = transform.position;
+                scoreEffect.transform.rotation = Quaternion.identity;
+                scoreEffect.transform.localScale = Vector3.one;
+                scoreEffect.Init(_amount, _randomAnim > 0 ? true : false);
 
                 //TODO:: Alterar para pool do GameController??
                 _spriteRenderer.enabled = false;

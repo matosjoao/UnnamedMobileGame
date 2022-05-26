@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     private ObjectPool<Snowball> _poolSnowball;
     private ObjectPool<ConfettiEffect> _poolConfettiEffect;
+    private ObjectPool<ScorePopup> _poolScorePopup ;
 
     [Header("Player Attack")]
     [SerializeField] private Snowball fireBall;
@@ -25,6 +26,7 @@ public class PlayerControl : MonoBehaviour
 
     [Header("Player Collect")]
     [SerializeField] private ConfettiEffect confettiEffectParticle;
+    [SerializeField] private ScorePopup scorePopupText;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip hurtSound;
@@ -50,6 +52,7 @@ public class PlayerControl : MonoBehaviour
         // Inicializar pools
         _poolSnowball = new ObjectPool<Snowball>(CreateSnowBall, OnTakeSnowBallFromPoll, OnReturnSnowBallToPoll);
         _poolConfettiEffect = new ObjectPool<ConfettiEffect>(CreateConfettiEffect, OnTakeConfettiEffectFromPoll, OnReturnConfettiEffectToPoll);
+        _poolScorePopup = new ObjectPool<ScorePopup>(CreateScorePopup, OnTakeScorePopupFromPoll, OnReturnScorePopupToPoll);
     }
 
     private void Start()
@@ -130,6 +133,10 @@ public class PlayerControl : MonoBehaviour
     {
         _characterMovement.StopImmediately();
         enabled = false;
+
+        // Go to menu
+        Scene scene = SceneManager.GetActiveScene();
+        _gameController.OnFailedLevel(_lifes, _levelScore, scene.name);
     }
 
     private void OnDamageEvent()
@@ -161,6 +168,11 @@ public class PlayerControl : MonoBehaviour
     public ConfettiEffect GetConfetti()
     {
         return _poolConfettiEffect.Get();
+    }
+
+    public ScorePopup GetScorePopup()
+    {
+        return _poolScorePopup.Get();
     }
 
 
@@ -214,6 +226,25 @@ public class PlayerControl : MonoBehaviour
     private void OnReturnConfettiEffectToPoll(ConfettiEffect confettiEffect)
     {
         confettiEffect.gameObject.SetActive(false);
+    }
+    #endregion
+
+    #region ScorePopup Pool
+    private ScorePopup CreateScorePopup()
+    {
+        var scorePopup = Instantiate(scorePopupText);
+        scorePopup.SetPool(_poolScorePopup);
+        return scorePopup;
+    }
+
+    private void OnTakeScorePopupFromPoll(ScorePopup scorePopup)
+    {
+        scorePopup.gameObject.SetActive(true);
+    }
+
+    private void OnReturnScorePopupToPoll(ScorePopup scorePopup)
+    {
+        scorePopup.gameObject.SetActive(false);
     }
     #endregion
 }
