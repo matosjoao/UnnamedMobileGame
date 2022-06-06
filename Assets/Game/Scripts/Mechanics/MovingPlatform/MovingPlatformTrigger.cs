@@ -18,7 +18,7 @@ public class MovingPlatformTrigger : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //collision.transform.parent = transform;
+            collision.transform.parent = transform;
         }
     }
 
@@ -30,7 +30,7 @@ public class MovingPlatformTrigger : MonoBehaviour
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //collision.transform.parent = null;
+            collision.transform.parent = null;
         }
     }
 }

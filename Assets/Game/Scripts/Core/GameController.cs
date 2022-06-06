@@ -155,8 +155,8 @@ public class GameController : MonoBehaviour
         List<PlayerData> data = JsonSaving.LoadData<PlayerData>(saveFileName);
         _playerData = data.Count > 0 ? data[0] : null;
         //TODO: Uncomment
-        if (_playerData == null)
-        {
+        //if (_playerData == null)
+        //{
             List<Level> levels = new List<Level>
             {
                 new Level(1, "Level1", false, 0, false),
@@ -164,13 +164,18 @@ public class GameController : MonoBehaviour
                 new Level(3, "Level3", false, 0, true),
                 new Level(4, "Level4", false, 0, true),
                 new Level(5, "Level5", false, 0, true),
-                new Level(6, "Level6", false, 0, true)
+                new Level(6, "Level6", false, 0, true),
+                new Level(7, "Level7", false, 0, true),
+                new Level(8, "Level8", false, 0, true),
+                new Level(9, "Level9", false, 0, true),
+                new Level(10, "Level10", false, 0, true),
+                new Level(11, "Level11", false, 0, true)
             };
 
             _playerData = new PlayerData(3, 0, 1, levels);
 
             Save();
-        }
+        //}
     }
 
     private void StartNewGame()

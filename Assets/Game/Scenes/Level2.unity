@@ -965,6 +965,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 722954315}
   - {fileID: 1025892033}
@@ -975,7 +976,7 @@ Transform:
   - {fileID: 634435311}
   - {fileID: 1563095982}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &465800668 stripped
 Transform:
@@ -57295,6 +57296,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 327383522}
   - {fileID: 59110248}
@@ -57329,7 +57331,7 @@ Transform:
   - {fileID: 1679747271}
   - {fileID: 1290381347}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &960842371 stripped
 MonoBehaviour:
@@ -57831,7 +57833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5313271714818609347, guid: c67b5f23368144646a81b78ffb4a0fce, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5313271714818609347, guid: c67b5f23368144646a81b78ffb4a0fce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58270,6 +58272,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.0000002, y: 2.7199998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1898616327}
   m_RootOrder: 0
@@ -58524,6 +58527,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1592950320}
   - {fileID: 413512625}
